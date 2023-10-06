@@ -9,17 +9,19 @@
 - [github-xgboost](https://github.com/dmlc/xgboost/releases)
 - [Multiple Outputs - Multiple Outputs](https://xgboost.readthedocs.io/en/stable/tutorials/multioutput.html#training-with-vector-leaf)
 - [A demo for multi-output regression](https://xgboost.readthedocs.io/en/stable/python/examples/multioutput_regression.html#sphx-glr-python-examples-multioutput-regression-py)
+- [Distributed XGBoost with PySpark](https://xgboost.readthedocs.io/en/stable/tutorials/spark_estimator.html#distributed-xgboost-with-pyspark)
 
 # サマリ
 
 ## Multi-target trees機能
 - 必要に応じて多出力ツリーを構築することができるように。
-- 多出力ツリーとは、単一の決定木が複数のターゲットまたは出力変数を予測する能力を持つツリーのことを指し（NNのマルチヘッドモデルと近しい概念と思われる）。
+- 多出力ツリーとは、単一の決定木が複数のターゲットまたは出力変数を予測する能力を持つツリーのことを指す。（NNのマルチヘッドモデルと近しい概念と思われる）
   - e.g.) 気象データをもとに、同時に最高気温と最低気温を予測、ある病気の存在確率とその病気が進行するリスクを同時に予測など。
 - `hist` メソッドを使用する場合、葉のサイズ（すなわち、葉の出力の数）はターゲットの数と等しくすることができる。
 
 ## pysparkへの対応
-- （調査中）
+- xgboostはv1.7よりpysparkへの対応を開始している
+- v2.0ではGPUベースの予測、データ初期化の改善、特徴量寄与の予測のサポート、Python型付けのサポート、トレーニングのログの改善など、多くの新機能と最適化を受けるように。
 
 ## デバイスパラメータの追加
 - `gpu_id`、`gpu_hist`、`gpu_predictor`、`cpu_predictor`、`gpu_coord_descent`、PySpark固有の`use_gpu`が追加。
