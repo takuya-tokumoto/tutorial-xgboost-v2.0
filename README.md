@@ -18,10 +18,12 @@
 - 多出力ツリーとは、単一の決定木が複数のターゲットまたは出力変数を予測する能力を持つツリーのことを指す。（NNのマルチヘッドモデルと近しい概念と思われる）
   - e.g.) 気象データをもとに、同時に最高気温と最低気温を予測、ある病気の存在確率とその病気が進行するリスクを同時に予測など。
 - `hist` メソッドを使用する場合、葉のサイズ（すなわち、葉の出力の数）はターゲットの数と等しくすることができる。
+- multi_strategyトレーニングパラメータで制御でき、ターゲットごとに1つのモデルを構築する場合はone_output_per_tree（デフォルト）、複数の出力木を構築する場合はmulti_output_treeの値を与える。
 
 ## pysparkへの対応
 - xgboostはv1.7よりpysparkへの対応を開始している
 - v2.0ではGPUベースの予測、データ初期化の改善、特徴量寄与の予測のサポート、Python型付けのサポート、トレーニングのログの改善など、多くの新機能と最適化を受けるように。
+- [Distributed XGBoost with PySpark](https://xgboost.readthedocs.io/en/stable/tutorials/spark_estimator.html#distributed-xgboost-with-pyspark)に色々書いてあるので参考に。
 
 ## デバイスパラメータの追加
 - `gpu_id`、`gpu_hist`、`gpu_predictor`、`cpu_predictor`、`gpu_coord_descent`、PySpark固有の`use_gpu`が追加。
@@ -54,7 +56,7 @@ exit #gpasswdでユーザを付与した後に再ログイン必要
 
 ## git clone
 ```shell
-git clone https://github.com/takuya-tokumoto/env-analysis.git
+git clone https://github.com/takuya-tokumoto/tutorial-xgboost-v2.0.git
 cd env-analysis
 ```
 
@@ -69,9 +71,3 @@ cd env-analysis
 
 - ローカルPCで立ち上げた場合はブラウザから`locathost:8888`
 - EC2の場合はブラウザから`{パブリック IPv4 DNS}:8888`
-
-
-## 備考
-- テスト環境
-  - ローカルPC(OS:windows)
-  - EC2(AMI:ubuntu server 22.04 LTS(HUM), instancetype:c5.2xlarge, EBS:100GB)
